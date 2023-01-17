@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="style.css">
+    <title>Book Object</title>
+</head>
+
+<body>
+    <h1>Book template</h1>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th> Title </th>
+                    <th> Author </th>
+                    <th> Pages </th>
+                    <th> Read </th>
+                </tr>
+            </thead>
+
+            <tbody id="tbody">
+            </tbody> 
+        </table>
+    </div>
+    
+    <button class="show-modal"> Add Book </button>
+    
+    <div class="modal hidden">
+        <button class="close-modal">&times;</button>
+        <h1> Add Book Form </h1>
+        <form action="index.html" method="post">
+            <p>Title:</p>
+            <input type='text' id='title' placeholder="title" />
+        
+            <p>Author:</p>
+            <input type='text' id='author' placeholder="author" />
+        
+            <p>Pages:</p>
+            <input type='text' id='pages' placeholder="pages" />
+    
+            <p>Read:</p>
+            <input type='text' id='read' placeholder="read" />
+    
+            <br/>
+            <input type='button' value='submit' />
+        </form>
+    </div>
+
+    <div class="overlay hidden"></div>
+
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
