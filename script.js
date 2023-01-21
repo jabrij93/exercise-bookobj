@@ -1,5 +1,5 @@
 // Main Book object model
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, datanumber) {
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -16,21 +16,21 @@ function Library() {
 }
 
 // Create new book object
-let book1 = new Book('Awaken the Giant Within', 'Tony Robbins', '351', 'already read');
-let book2 = new Book('Think and Grow Rich', 'Napoleon Hill', '271', 'currently reading');
-let book3 = new Book('Rich Dad Poor Dad', 'Robert T. Kiyosaki', '289', 'finish read');
-let book4 = new Book('Atomic Habits', 'James Clear', '279', 'finish read');
-let book5 = new Book('The Outliers', 'Malcom Gladwell', '311', 'currently reading');
+// let book1 = new Book('Awaken the Giant Within', 'Tony Robbins', '351', 'already read');
+// let book2 = new Book('Think and Grow Rich', 'Napoleon Hill', '271', 'currently reading');
+// let book3 = new Book('Rich Dad Poor Dad', 'Robert T. Kiyosaki', '289', 'finish read');
+// let book4 = new Book('Atomic Habits', 'James Clear', '279', 'finish read');
+// let book5 = new Book('The Outliers', 'Malcom Gladwell', '311', 'currently reading');
 
 // Create new library object
 let library = new Library();
 
 // Add books to the empty array
-library.addToLibrary(book1);
-library.addToLibrary(book2);
-library.addToLibrary(book3);
-library.addToLibrary(book4);
-library.addToLibrary(book5);
+// library.addToLibrary(book1);
+// library.addToLibrary(book2);
+// library.addToLibrary(book3);
+// library.addToLibrary(book4);
+// library.addToLibrary(book5);
 
 // Function to add main Book to HTML content
 function addToHTML() {
@@ -48,32 +48,75 @@ function addToHTML() {
     }
 }
 
+// Main Book object model
+function Book(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;  
+}
+
+// Library object model
+function Library() {
+    this.myLibrary = [];
+    
+    this.addToLibrary = function(myLibrary) {
+        this.myLibrary.push(myLibrary);
+    }
+}
+
 // Submit button
 // Add event listener to submit button
 
-function submitButton() {
-    let submit = document.getElementById('submit');
-    submit.addEventListener('click', function(e) {
-        e.preventDefault()
-        let jsTitle = document.getElementById('title').value;
-        let jsAuthor = document.getElementById('author').value;
-        let jsPages = document.getElementById('pages').value;
-        let jsRead = document.getElementById('read').value;
+let submit = document.getElementById(`input[value='submit']`);
+let newBook = {
+  jsTitle: '',
+  jsAuthor: '',
+  jsPages: '',
+  jsRead: '',
+}
 
-        let tbody = document.getElementById('tbody');
+function submitButton() { 
+    let jsTitle = document.getElementById('title').value;
+    let jsAuthor = document.getElementById('author').value;
+    let jsPages = document.getElementById('pages').value;
+    let jsRead = document.getElementById('read').value;
 
-        let tr = document.createElement('tr');
+    const book = new Book(jsTitle, jsAuthor, jsPages, jsRead);
+    library.addToLibrary(book);
 
-        let data = `
-        <td> ${jsTitle} </td>
-        <td> ${jsAuthor} </td>
-        <td> ${jsPages} </td>
-        <td> ${jsRead} </td>
-        `
+    const tbody = document.getElementById('tbody');
+    const tr = document.createElement('tr');
 
-        tr.innerHTML = data;
-        tbody.appendChild(tr);        
+    let data = `
+    <td> ${ jsTitle } </td>
+    <td> ${ jsAuthor } </td>
+    <td> ${ jsPages } </td>
+    <td> ${ jsRead } </td>
+    <td> <button class="deleteButton"> Delete </button> </td>
+    <td> 
+        <label class="switch"> 
+            <input type="checkbox">
+            <span class="slider"></span>
+        </label> 
+    </td>
+    `
+
+    tr.innerHTML += data;
+    tbody.append(tr);
+
+    // Delete button
+    let deleteBtn = document.getElementsByClassName("deleteButton");
+    // Converting html collection to array, to use array methods
+    Array.prototype.slice.call(deleteBtn).forEach(function(item) {
+        // iterate and add the event handler to it
+        item.addEventListener("click", function(e) {
+            e.target.parentNode.parentNode.remove()
+        });
     })
+
+    // Toggle button
+
 }
 
 // To make add-book button modal work
@@ -105,3 +148,28 @@ for (let i = 0; i < btnsOpenModal.length; i++)
       closeModal();
     }
 });  
+
+// function submitButton() {
+//     let submit = document.getElementById('submit');
+//     submit.addEventListener('click', function(e) {
+//         e.preventDefault()
+//         let jsTitle = document.getElementById('title').value;
+//         let jsAuthor = document.getElementById('author').value;
+//         let jsPages = document.getElementById('pages').value;
+//         let jsRead = document.getElementById('read').value;
+
+//         let tbody = document.getElementById('tbody');
+
+//         let tr = document.createElement('tr');
+
+//         let data = `
+//         <td> ${jsTitle} </td>
+//         <td> ${jsAuthor} </td>
+//         <td> ${jsPages} </td>
+//         <td> ${jsRead} </td>
+//         `
+
+//         tr.innerHTML = data;
+//         tbody.appendChild(tr);        
+//     })
+// }

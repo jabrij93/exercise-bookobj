@@ -21,6 +21,8 @@
                     <th> Author </th>
                     <th> Pages </th>
                     <th> Read </th>
+                    <th> Action </th>
+                    <th> Status </th>
                 </tr>
             </thead>
 
@@ -34,22 +36,22 @@
     <div class="modal hidden">
         <button class="close-modal">&times;</button>
         <h1> Add Book Form </h1>
-        <form action="index.html" method="post">
-            <p>Title:</p>
-            <input type='text' id='title' placeholder="title" />
+
+        <p>Title:</p>
+        <input type='text' name='title' id='title' placeholder="title" />
+            
+        <p>Author:</p>
+        <input type='text' name='author' id='author' placeholder="author" />
+            
+        <p>Pages:</p>
+        <input type='text' name='pages' id='pages' placeholder="pages" />
         
-            <p>Author:</p>
-            <input type='text' id='author' placeholder="author" />
+        <p>Read:</p>
+        <input type='text' name='read' id='read' placeholder="read" />
         
-            <p>Pages:</p>
-            <input type='text' id='pages' placeholder="pages" />
-    
-            <p>Read:</p>
-            <input type='text' id='read' placeholder="read" />
-    
-            <br/>
-            <input type='button' value='submit' />
-        </form>
+        <br/>
+        <button onclick="submitButton()" id='submit' value='submit'> Submit </button>
+        
     </div>
 
     <div class="overlay hidden"></div>
